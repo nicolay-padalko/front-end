@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
+import InputGroup from 'react-bootstrap/InputGroup';
 import TransacaoService from '../services/TransacaoService';
+import "bootstrap/dist/css/bootstrap.css";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 
 class ListTransacaoComponent extends Component {
@@ -24,37 +28,77 @@ class ListTransacaoComponent extends Component {
 
   render() {
     return (
-        <div>
-          <h2 className="text-center">Lista Transação</h2>
+        <div className="container">
           <div className="row">
-            <button className="btn btn-primary" onClick={this.addTransacao}> Adicionar Transação</button>
-          </div>
-          <div className="row">
-            <table className="table table-striped table-bordered">
-              <thead>
-              <tr>
-                <th> Data</th>
-                <th> Valor</th>
-                <th> Tipo</th>
-                <th> Nome operador transação </th>
-              </tr>
-              </thead>
-              <tbody>
-              {
-                this.state.transacoes.map(
-                    transacao =>
-                        <tr key={transacao.id}>
-                          <td> {transacao.data}</td>
-                          <td> {transacao.valor}</td>
-                          <td> {transacao.tipo}</td>
-                          <td> {transacao.operador}</td>
-                        </tr>
-                )
-              }
-              </tbody>
-            </table>
-          </div>
 
+            <div className="col-sm-4">
+              <Form style={{padding: 10}}>
+                <Form.Group>
+                  <Form.Label> Data de início </Form.Label>
+                  <Form.Control type="text"
+                                placeholder="  /  /  "/>
+                </Form.Group>
+              </Form>
+            </div>
+            <div className="col-sm-4">
+              <Form style={{padding: 10}}>
+                <Form.Group>
+                  <Form.Label> Data de Fim </Form.Label>
+                  <Form.Control
+                      type="email"
+                      placeholder=" /  /  "
+                  />
+                </Form.Group>
+              </Form>
+            </div>
+            <div className="col-sm-4">
+              <Form style={{padding: 10}}>
+                <Form.Group>
+                  <Form.Label> Nome operador transação </Form.Label>
+                  <Form.Control
+                      type="email"
+                      placeholder="  "
+                  />
+                </Form.Group>
+              </Form>
+            </div>
+            <div className="col-sm-12">
+              <Button variant="primary" type="submit">
+                Pesquisar
+              </Button>
+            </div>
+
+          </div>
+          <div>
+            <h2 className="text-center">Lista Transações</h2>
+
+            <div className="row">
+              <table className="table table-striped table-bordered">
+                <thead>
+                <tr>
+                  <th> Data</th>
+                  <th> Valor</th>
+                  <th> Tipo</th>
+                  <th> Nome operador transação</th>
+                </tr>
+                </thead>
+                <tbody>
+                {
+                  this.state.transacoes.map(
+                      transacao =>
+                          <tr key={transacao.id}>
+                            <td> {transacao.data}</td>
+                            <td> {transacao.valor}</td>
+                            <td> {transacao.tipo}</td>
+                            <td> {transacao.operador}</td>
+                          </tr>
+                  )
+                }
+                </tbody>
+              </table>
+            </div>
+
+          </div>
         </div>
     )
         ;
